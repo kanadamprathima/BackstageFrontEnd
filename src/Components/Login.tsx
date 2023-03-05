@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { LoginCredentials } from "../types/type";
 import { API_URL } from "../config/constants";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const LoginPage = () => {
+interface Props {
+  onLogin: () => void;
+}
+const LoginPage: React.FC<Props> = ({ onLogin }) => {
   const [credentials, setCredentials] = useState<LoginCredentials>({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -22,10 +27,16 @@ const LoginPage = () => {
     try {
       const res = await axios.post(`${API_URL}/login`, credentials);
       console.log(res.data);
+      //console.log(credentials.email);
+      navigate(`/users/1/todos`);
     } catch (error) {
       console.log(error);
     }
     console.log("Submitting login form with credentials:", credentials);
+  };
+  const handleLoginClick = () => {
+    // Perform authentication logic here
+    onLogin();
   };
 
   return (
@@ -52,7 +63,7 @@ const LoginPage = () => {
           />
         </label>
         <br />
-        <button type="submit">Login</button>
+        <button onClick={handleLoginClick}>Login</button>
       </form>
     </div>
   );

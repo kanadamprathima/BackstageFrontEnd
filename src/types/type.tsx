@@ -7,3 +7,7 @@ export interface LoginCredentials {
   email: string;
   password: string;
 }
+
+export interface CustomRouteProps {
+  exact?: boolean;
+}
