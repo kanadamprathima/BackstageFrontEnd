@@ -11,6 +11,8 @@
 - TypeScript
 - axios
 - react-router-dom.
+- bcrypt
+- JWT
 
 # Installation
 
