@@ -33,7 +33,7 @@ const TodoForm = () => {
     <div className="todo-app ">
       <div className="card-body">
         <h1>Create New Todo</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="todo-form ">
           <div className="mb-3">
             <label>
               Title:

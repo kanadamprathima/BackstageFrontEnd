@@ -31,7 +31,7 @@ const TodoList = () => {
       </ul>
       {/* This will redirect you to todoform */}
       <Link to={`/users/${userId}/todos/new`}>
-        <button className="todo-button">Create New Todo</button>
+        <button className="todo-button">Create Todo</button>
       </Link>
     </div>
   );

@@ -49,10 +49,11 @@ const LoginPage: React.FC<Props> = ({ onLogin }) => {
   return (
     <div className="todo-app">
       <h1>Login Page</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="todo-form">
         <label>
           Email:
           <input
+            className="todo-input"
             type="text"
             name="email"
             value={credentials.email}
@@ -63,6 +64,7 @@ const LoginPage: React.FC<Props> = ({ onLogin }) => {
         <label>
           Password:
           <input
+            className="todo-input"
             type="password"
             name="password"
             value={credentials.password}
@@ -70,7 +72,9 @@ const LoginPage: React.FC<Props> = ({ onLogin }) => {
           />
         </label>
         <br />
-        <button onClick={handleLoginClick}>Login</button>
+        <button onClick={handleLoginClick} className="todo-button">
+          Login
+        </button>
       </form>
     </div>
   );
