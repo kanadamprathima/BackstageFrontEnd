@@ -4,7 +4,6 @@ import { API_URL } from "../config/constants";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Todo } from "../types/type";
-import { useEffect } from "react";
 
 const TodoForm = () => {
   const [title, setTitle] = useState("");

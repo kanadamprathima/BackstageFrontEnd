@@ -7,6 +7,8 @@ import { API_URL } from "../config/constants";
 const TodoDetail: React.FC = () => {
   const [todo, setTodo] = useState<Todo | null>(null);
   const { userId, todoId } = useParams<{ userId: string; todoId: string }>();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,14 +16,21 @@ const TodoDetail: React.FC = () => {
       const response = await axios.get<Todo>(
         `${API_URL}/users/${userId}/todos/${todoId}`
       );
+      console.log("tododetails", response);
       setTodo(response.data);
+      setTitle(response.data.title);
+      setDescription(response.data.description);
     };
 
     fetchTodo();
   }, [userId, todoId]);
 
-  const handleEdit = () => {
-    // navigate(`/users/${userId}/todos/${todoId}/edit`);
+  const handleEdit = async () => {
+    // const updatedTodo = await axios.put(
+    //   `${API_URL}/users/${userId}/todos/${todoId}`,
+    //   { title, description }
+    // );
+    navigate(`/users/${userId}/todos/${todoId}/edit`);
   };
 
   const handleDelete = async () => {
