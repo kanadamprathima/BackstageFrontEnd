@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { Todo } from "../types/type";
 import { API_URL } from "../config/constants";
 
@@ -21,7 +21,7 @@ const TodoDetail: React.FC = () => {
   }, [userId, todoId]);
 
   const handleEdit = () => {
-    navigate(`/users/${userId}/todos/${todoId}/edit`);
+    // navigate(`/users/${userId}/todos/${todoId}/edit`);
   };
 
   const handleDelete = async () => {
@@ -34,11 +34,20 @@ const TodoDetail: React.FC = () => {
   }
 
   return (
-    <div>
-      <h2>{todo.title}</h2>
-      <p>{todo.description}</p>
-      <button onClick={handleEdit}>Edit</button>
-      <button onClick={handleDelete}>Delete</button>
+    <div className="container">
+      <div className="todo-row">
+        <h2>{todo.title}</h2>
+        <p>{todo.description}</p>
+        <button onClick={handleEdit} className="todo-button">
+          Edit
+        </button>
+        <button onClick={handleDelete} className="todo-button">
+          Delete
+        </button>
+        <Link to={`/users/${userId}/todos`}>
+          <button className="todo-button">BACK </button>
+        </Link>
+      </div>
     </div>
   );
 };

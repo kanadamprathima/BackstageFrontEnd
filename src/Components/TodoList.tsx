@@ -18,16 +18,18 @@ const TodoList = () => {
   }, [userId]);
 
   return (
-    <div>
+    <div className="todo-app">
       <h1>To-Do List</h1>
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id}>
+          <li key={todo.id} className="todo-row">
             <Link to={`/users/${userId}/todos/${todo.id}`}>{todo.title}</Link>
           </li>
         ))}
       </ul>
-      <Link to={`/users/${userId}/todos/:todoId/edit`}>Create New Todo</Link>
+      <Link to={`/users/${userId}/todos/new`}>
+        <button className="todo-button">Create New Todo</button>
+      </Link>
     </div>
   );
 };

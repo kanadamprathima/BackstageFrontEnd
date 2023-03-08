@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { LoginCredentials } from "../types/type";
+import React, { useEffect, useState } from "react";
+import { LoginCredentials, User } from "../types/type";
 import { API_URL } from "../config/constants";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -13,6 +13,14 @@ const LoginPage: React.FC<Props> = ({ onLogin }) => {
     password: "",
   });
   const navigate = useNavigate();
+  const [token, setToken] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    if (token && user) {
+      navigate(`/users/${user.id}/todos`);
+    }
+  }, [navigate, token, user]);
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -26,9 +34,10 @@ const LoginPage: React.FC<Props> = ({ onLogin }) => {
     // TODO: send login request to server with credentials
     try {
       const res = await axios.post(`${API_URL}/login`, credentials);
-      console.log(res.data);
-      //console.log(credentials.email);
-      navigate(`/users/1/todos`);
+      console.log("loggin res fron frontend", res.data);
+      // navigate(`/users/${userId}/todos`);
+      setUser(res.data.reqUser);
+      setToken(res.data.token);
     } catch (error) {
       console.log(error);
     }
@@ -40,7 +49,7 @@ const LoginPage: React.FC<Props> = ({ onLogin }) => {
   };
 
   return (
-    <div>
+    <div className="todo-app">
       <h1>Login Page</h1>
       <form onSubmit={handleSubmit}>
         <label>

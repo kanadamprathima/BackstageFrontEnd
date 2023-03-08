@@ -2,47 +2,70 @@ import React, { useState } from "react";
 import axios from "axios";
 import { API_URL } from "../config/constants";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { Todo } from "../types/type";
+import { useEffect } from "react";
 
-interface TodoFormProps {
-  userId: number;
-}
-
-const TodoForm: React.FC<TodoFormProps> = ({ userId }) => {
+const TodoForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const { userId } = useParams();
+  const [todo, setTodo] = useState<Todo | null>(null);
+
   const navigate = useNavigate();
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const newtodo = await axios.post(`${API_URL}/users/1/todos`, {
+    if (!title || !description) {
+    }
+    const newtodo = await axios.post(`${API_URL}/users/${userId}/todos`, {
       title,
       description,
     });
+    setTodo(newtodo.data);
     console.log("newtodo", newtodo);
+    setTitle("");
+    setDescription("");
     navigate(`/users/${userId}/todos`);
   };
+  // useEffect(() => {
+  //   //
+  // }, [todo]);
   return (
-    <div>
-      <h1>Create New Todo</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Title:
-          <input
-            type="text"
-            placeholder="add new task"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-          />
-        </label>
-        <label>Description:</label>
-        <textarea
-          placeholder="add description"
-          value={description}
-          onChange={(event) => setDescription(event.target.value)}
-        ></textarea>
-
-        <br />
-        <button type="submit">Create</button>
-      </form>
+    <div className="todo-app ">
+      <div className="card-body">
+        <h1>Create New Todo</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label>
+              Title:
+              <input
+                type="text"
+                className="todo-input"
+                placeholder="add new task"
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
+              />
+            </label>
+          </div>
+          <br />
+          <div className="mb-3">
+            <label>
+              Description:
+              <textarea
+                placeholder="add description"
+                className="todo-input"
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+              ></textarea>
+            </label>
+          </div>
+          <br />
+          <button type="submit" className="todo-button">
+            Create
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
