@@ -51,9 +51,9 @@ const LoginPage: React.FC<Props> = ({ onLogin }) => {
       <h1>Login Page</h1>
       <form onSubmit={handleSubmit} className="todo-form">
         <label>
-          Email:
           <input
             className="todo-input"
+            placeholder="Enter Email"
             type="text"
             name="email"
             value={credentials.email}
@@ -62,9 +62,9 @@ const LoginPage: React.FC<Props> = ({ onLogin }) => {
         </label>
         <br />
         <label>
-          Password:
           <input
             className="todo-input"
+            placeholder="Enter password"
             type="password"
             name="password"
             value={credentials.password}

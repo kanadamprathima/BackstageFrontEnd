@@ -49,7 +49,6 @@ const EditTodoForm = () => {
         <form onSubmit={handleEdit}>
           <div className="mb-3">
             <label>
-              Title:
               <input
                 type="text"
                 className="todo-input"
@@ -62,7 +61,6 @@ const EditTodoForm = () => {
           <br />
           <div className="mb-3">
             <label>
-              Description:
               <textarea
                 placeholder="Edit description"
                 className="todo-input"

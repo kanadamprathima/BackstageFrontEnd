@@ -52,16 +52,14 @@ h2 {
 }
 
 .todo-input {
-  padding: 15px 32px 15px 16px;
-  border-radius: 20px 20px;
-  border: 1px solid #dfe1e5;
-  outline: none;
-  width: 320px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  border: 1px solid hsl(220, 94%, 50%);
+  outline: blueviolet;
+  width: 330px;
   background: transparent;
-}
-
-.todo-input.edit {
-  border: 2px solid #149fff;
+  font-size: 17px;
+  margin-bottom: 1rem;
 }
 
 .todo-button.edit {

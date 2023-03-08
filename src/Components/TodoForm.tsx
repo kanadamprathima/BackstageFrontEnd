@@ -36,11 +36,10 @@ const TodoForm = () => {
         <form onSubmit={handleSubmit} className="todo-form ">
           <div className="mb-3">
             <label>
-              Title:
               <input
                 type="text"
                 className="todo-input"
-                placeholder="add new task"
+                placeholder="Enter task title"
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
               />
@@ -49,9 +48,8 @@ const TodoForm = () => {
           <br />
           <div className="mb-3">
             <label>
-              Description:
               <textarea
-                placeholder="add description"
+                placeholder="Enter task description"
                 className="todo-input"
                 value={description}
                 onChange={(event) => setDescription(event.target.value)}
