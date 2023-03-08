@@ -9,15 +9,9 @@ const EditTodoForm = () => {
   const [todo, setTodo] = useState<Todo | null>(null);
   const [title, setTitle] = useState(todo?.description || "");
   const [description, setDescription] = useState(todo?.description || "");
-
   const navigate = useNavigate();
-
   const handleEdit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // if (!title || !description) {
-    //   return;
-    // }
-
     const updatedTodo = {
       title,
       description,
@@ -27,13 +21,13 @@ const EditTodoForm = () => {
       `${API_URL}/users/${userId}/todos/${todoId}`,
       updatedTodo
     );
-
     console.log("update todo", response);
     navigate(`/users/${userId}/todos/${todoId}`);
   };
   useEffect(() => {
     const fetchTodo = async () => {
       try {
+        //fetch the required todoitemId
         const response = await axios.get<Todo>(
           `${API_URL}/users/${userId}/todos/${todoId}`
         );
@@ -45,7 +39,6 @@ const EditTodoForm = () => {
         console.error(error);
       }
     };
-
     fetchTodo();
   }, [userId, todoId]);
 

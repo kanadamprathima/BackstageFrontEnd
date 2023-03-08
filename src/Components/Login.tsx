@@ -35,7 +35,6 @@ const LoginPage: React.FC<Props> = ({ onLogin }) => {
     try {
       const res = await axios.post(`${API_URL}/login`, credentials);
       console.log("loggin res fron frontend", res.data);
-      // navigate(`/users/${userId}/todos`);
       setUser(res.data.reqUser);
       setToken(res.data.token);
     } catch (error) {
@@ -44,7 +43,6 @@ const LoginPage: React.FC<Props> = ({ onLogin }) => {
     console.log("Submitting login form with credentials:", credentials);
   };
   const handleLoginClick = () => {
-    // Perform authentication logic here
     onLogin();
   };
 

@@ -12,6 +12,7 @@ const TodoDetail: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    //fetching the todoitem details from server
     const fetchTodo = async () => {
       const response = await axios.get<Todo>(
         `${API_URL}/users/${userId}/todos/${todoId}`
@@ -24,15 +25,11 @@ const TodoDetail: React.FC = () => {
 
     fetchTodo();
   }, [userId, todoId]);
-
+  //redirecting to edit todoform
   const handleEdit = async () => {
-    // const updatedTodo = await axios.put(
-    //   `${API_URL}/users/${userId}/todos/${todoId}`,
-    //   { title, description }
-    // );
     navigate(`/users/${userId}/todos/${todoId}/edit`);
   };
-
+  //FOR deleting todoitem of specific user
   const handleDelete = async () => {
     await axios.delete(`${API_URL}/users/${userId}/todos/${todoId}`);
     navigate(`/users/${userId}/todos`);
@@ -47,6 +44,7 @@ const TodoDetail: React.FC = () => {
       <div className="todo-row">
         <h2>{todo.title}</h2>
         <p>{todo.description}</p>
+        {/* button for editing the title and description */}
         <button onClick={handleEdit} className="todo-button">
           Edit
         </button>

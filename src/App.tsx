@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import "./App.css";
 import TodoList from "./Components/TodoList";
 import Login from "./Components/Login";
-
-// import AllTodosList from "./Components/AllTodosList";
-
 import { Routes, Route } from "react-router-dom";
 import TodoDetail from "./Components/TodoDetail";
 import TodoForm from "./Components/TodoForm";
@@ -14,7 +11,6 @@ const App: React.FC = () => {
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
-
   return (
     <Routes>
       <Route path="/" element={<Login onLogin={handleLogin} />} />

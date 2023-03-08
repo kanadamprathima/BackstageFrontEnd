@@ -4,32 +4,31 @@ import { API_URL } from "../config/constants";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Todo } from "../types/type";
-
+//For adding new todo
 const TodoForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const { userId } = useParams();
   const [todo, setTodo] = useState<Todo | null>(null);
-
   const navigate = useNavigate();
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    //Giving alert message
     if (!title || !description) {
+      alert("Provide title and description");
+      return;
     }
+    //for adding newtodo
     const newtodo = await axios.post(`${API_URL}/users/${userId}/todos`, {
       title,
       description,
     });
     setTodo(newtodo.data);
-    console.log("newtodo", newtodo);
+    // console.log("newtodo", newtodo);
     setTitle("");
     setDescription("");
     navigate(`/users/${userId}/todos`);
   };
-  // useEffect(() => {
-  //   //
-  // }, [todo]);
   return (
     <div className="todo-app ">
       <div className="card-body">
